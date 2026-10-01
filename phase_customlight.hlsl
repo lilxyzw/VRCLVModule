@@ -1,8 +1,9 @@
+#ifdef UNITY_PASS_FORWARDBASE
 if(_UdonLightVolumeEnabled)
 {
     float3 L0, L1r, L1g, L1b = 0;
     #if defined(VRCLV_VERSION) && VRCLV_VERSION == 3
-    LightVolumeSH(vertex.position, L0, L1r, L1g, L1b, vertex.N);
+    LightVolumeSH(vertex.position, L0, L1r, L1g, L1b, 0, vertex.N);
     #else
     LightVolumeSH(vertex.position, L0, L1r, L1g, L1b);
     #endif
@@ -23,3 +24,4 @@ if(_UdonLightVolumeEnabled)
     SHBb = 0;
     SHC = 0;
 }
+#endif
