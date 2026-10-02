@@ -1,9 +1,17 @@
 #ifdef UNITY_PASS_FORWARDBASE
 if(_UdonLightVolumeEnabled)
 {
+    #ifndef VRCLV_MODULE_POINTLIGHT_NORMAL
+    #define VRCLV_MODULE_POINTLIGHT_NORMAL sd.N_detail
+    #endif
+
+    #ifndef VRCLV_MODULE_POINTLIGHT_SHADING
+    #define VRCLV_MODULE_POINTLIGHT_SHADING 1
+    #endif
+
     float3 L0, L1r, L1g, L1b = 0;
     #if defined(VRCLV_VERSION) && VRCLV_VERSION == 3
-    LightVolumeSH(vertex.position, L0, L1r, L1g, L1b, 0, vertex.N);
+    LightVolumeSH(vertex.position, L0, L1r, L1g, L1b, 0, VRCLV_MODULE_POINTLIGHT_NORMAL, VRCLV_MODULE_POINTLIGHT_SHADING);
     #else
     LightVolumeSH(vertex.position, L0, L1r, L1g, L1b);
     #endif
